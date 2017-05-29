@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Mathllc"
+  config.site_title = "Math LLC"
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -153,11 +153,11 @@ ActiveAdmin.setup do |config|
   # To understand how to localize your app with I18n, read more at
   # https://github.com/svenfuchs/i18n/blob/master/lib%2Fi18n%2Fbackend%2Fbase.rb#L52
   #
-  config.localize_format = :long
+  config.localize_format = :short
 
   # == Setting a Favicon
   #
-  # config.favicon = 'favicon.ico'
+  #config.favicon = 'favicon.ico'
 
   # == Meta Tags
   #
@@ -282,7 +282,7 @@ ActiveAdmin.setup do |config|
   # By default, the footer shows the current Active Admin version. You can
   # override the content of the footer here.
   #
-  # config.footer = 'my custom footer text'
+  config.footer = 'Math LLC - providing empowerment through accounting since 2006'
 
   # == Sorting
   #
