@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529182304) do
+ActiveRecord::Schema.define(version: 20170529193826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,45 @@ ActiveRecord::Schema.define(version: 20170529182304) do
     t.datetime "updated_at",           null: false
   end
 
+  create_table "jobs", force: :cascade do |t|
+    t.integer  "fed_form"
+    t.string   "state_1"
+    t.string   "state_2"
+    t.string   "state_3"
+    t.string   "state_4"
+    t.boolean  "tmse"
+    t.boolean  "portland"
+    t.integer  "status"
+    t.boolean  "printed"
+    t.boolean  "scanned"
+    t.boolean  "uploaded"
+    t.date     "filed"
+    t.date     "accepted_fed"
+    t.date     "accepted_state_1"
+    t.date     "accepted_state_2"
+    t.date     "accepted_state_3"
+    t.date     "accepted_state_4"
+    t.date     "due_date"
+    t.text     "rejected"
+    t.text     "notes"
+    t.integer  "client_id"
+    t.integer  "preparer_id"
+    t.integer  "payment_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["client_id"], name: "index_jobs_on_client_id", using: :btree
+    t.index ["payment_id"], name: "index_jobs_on_payment_id", using: :btree
+    t.index ["preparer_id"], name: "index_jobs_on_preparer_id", using: :btree
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.decimal  "amount"
+    t.integer  "payment_type"
+    t.integer  "check_number"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "preparers", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -90,4 +129,7 @@ ActiveRecord::Schema.define(version: 20170529182304) do
     t.datetime "updated_at",     null: false
   end
 
+  add_foreign_key "jobs", "clients"
+  add_foreign_key "jobs", "payments"
+  add_foreign_key "jobs", "preparers"
 end
