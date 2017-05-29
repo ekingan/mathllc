@@ -1,0 +1,6 @@
+fix dates
+associate models
+Breadcrumbs
+preparer accounts
+ability to create new payment from jobs
+ability to select preparer and job from payment
