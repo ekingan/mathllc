@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  date_of_birth: 2017-05-29
+  email: MyString
+  phone: MyString
+  street: MyString
+  city: MyString
+  state: MyString
+  zip_code: 1
+  occupation: MyString
+  entity_type: 1
+  tax_year_ends: 2017-05-29
+  filing_status: 1
+  number_of_dependents: 1
+  spouse_first_name: MyString
+  spouse_last_name: MyString
+  spouse_date_of_birth: 2017-05-29
+  spouse_phone: MyString
+  spouse_email: MyString
+  spouse_occupation: MyString
+  notes: MyText
+
+two:
+  first_name: MyString
+  last_name: MyString
+  date_of_birth: 2017-05-29
+  email: MyString
+  phone: MyString
+  street: MyString
+  city: MyString
+  state: MyString
+  zip_code: 1
+  occupation: MyString
+  entity_type: 1
+  tax_year_ends: 2017-05-29
+  filing_status: 1
+  number_of_dependents: 1
+  spouse_first_name: MyString
+  spouse_last_name: MyString
+  spouse_date_of_birth: 2017-05-29
+  spouse_phone: MyString
+  spouse_email: MyString
+  spouse_occupation: MyString
+  notes: MyText
