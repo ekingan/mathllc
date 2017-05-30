@@ -31,6 +31,6 @@ permit_params :first_name, :last_name, :username, :email, :phone, :street, :city
       f.input :license_number
       f.input :job_title
     end
-    f.button
+    f.actions
   end
 end

@@ -2,7 +2,8 @@ ActiveAdmin.register Job do
   permit_params :fed_form, :state_1, :state_2, :state_3, :state_4, :tmse, :portland, :status,
               :printed, :scanned, :uploaded, :filed, :accepted_fed, :accepted_state_1,
               :accepted_state_2, :accepted_state_3, :accepted_state_4, :due_date, :rejected,
-              :notes, :client, :preparer, :payment
+              :notes, :client, :preparer, :payment, preparer_attributes: [:first_name, :id],
+              client_attributed: [:last_name, :id]
 
   index do
     column :id
@@ -12,12 +13,18 @@ ActiveAdmin.register Job do
     column :scanned
     column :uploaded
     column :filed
-    column :accepted_fed
-    column :accepted_state_1
+    column "Fed Accepted", :accepted_fed
+    column "State Accepted", :accepted_state_1
     column :rejected
+    actions
   end
 
   form do |f|
+    f.inputs "Preparer Info" do
+      f.semantic_fields_for :preparer do |prep|
+        prep.input :first_name, label: "Preparer", as: :select, collection: Preparer.all.map(&:first_name)
+      end
+    end
     f.inputs "Job Info" do
       f.input :fed_form
       f.input :state_1
@@ -43,5 +50,9 @@ ActiveAdmin.register Job do
     end
       f.input :notes
       f.actions
+  end
+
+  controller do
+    nested_belongs_to :preparer, optional: true
   end
 end

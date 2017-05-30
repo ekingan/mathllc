@@ -4,4 +4,5 @@ class Job < ApplicationRecord
   belongs_to :client
   belongs_to :preparer
   belongs_to :payment
+  accepts_nested_attributes_for :payment, :preparer, :client
 end

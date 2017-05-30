@@ -26,6 +26,38 @@ ActiveAdmin.register Client do
     column :phone
     column :entity_type
     column :spouse_first_name
+    actions
+  end
+
+  form do |f|
+    # f.input :preparer
+    f.inputs "Taxpayer Info" do
+      f.input :first_name
+      f.input :last_name
+      f.input :date_of_birth, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
+      f.input :email
+      f.input :phone
+      f.input :city
+      f.input :state
+      f.input :zip_code
+      f.input :occupation
+      f.input :entity_type, as: :select
+      f.input :tax_year_ends, as: :datepicker, datepicker_options: { dateFormat: "mm/dd" }
+      f.input :filing_status, as: :select
+      f.input :number_of_dependents
+    end
+    f.inputs "Spouse Info" do
+      f.input :spouse_first_name
+      f.input :spouse_last_name
+      f.input :spouse_date_of_birth, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
+      f.input :spouse_phone
+      f.input :spouse_email
+      f.input :spouse_occupation
+    end
+    f.inputs "Notes" do
+      f.input :notes
+    end
+    f.actions
   end
 
 end
