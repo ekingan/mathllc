@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 9.99
+  payment_type: 1
+  check_number: 1
+  job: one
+  client: one
+
+two:
+  amount: 9.99
+  payment_type: 1
+  check_number: 1
+  job: two
+  client: two
