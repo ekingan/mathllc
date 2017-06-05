@@ -9,29 +9,29 @@ ActiveAdmin.register Job do
 
   index do
     column :id
+    column "Client" do |job|
+      Client.find(job.client_id).last_name
+    end
+    column "Preparer" do |job|
+      Preparer.find(job.preparer_id).first_name
+    end
     column :fed_form
     column :status
     column :printed
     column :scanned
     column :uploaded
     column :filed
-    column "Fed Accepted", :accepted_fed
-    column "State Accepted", :accepted_state_1
+    column "Fed Accepted", :ack_fed
+    column "State Accepted", :ack_primary_state
     column :rejected
     actions
   end
 
   form do |f|
-    f.semantic_errors
-    f.inputs "Preparer Info" do
-      f.semantic_fields_for :preparer do |prep|
-        prep.input :first_name, label: "Preparer", as: :select, collection: Preparer.all.map(&:first_name)
-      end
-    end
-    f.inputs "Client Info" do
-      f.semantic_fields_for :client do |c|
-        c.input :last_name, label: "Client", as: :select, collection: Client.all.map(&:last_name)
-      end
+    f.semantic_errors *f.object.errors.keys
+    f.inputs "Preparer and Client Info" do
+      f.input :preparer_id
+      f.input :client_id
     end
     f.inputs "Job Info" do
       f.input :fed_form
