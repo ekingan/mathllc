@@ -39,7 +39,6 @@ ActiveAdmin.register Job do
       f.input :tmse
       f.input :portland
       f.input :due_date, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
-      # client and preparer
     end
     f.inputs "Status" do
       f.input :status

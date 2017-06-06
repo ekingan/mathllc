@@ -1,15 +1,17 @@
 ActiveAdmin.register Payment do
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if params[:action] == 'create' && current_user.admin?
-#   permitted
-# end
+	permit_params :client_attributes, :job_attributes, :amount, :payment_type, :check_number
+
+	form do |f|
+    f.semantic_errors *f.object.errors.keys
+		f.inputs "Job" do
+			f.input :job_id
+		end
+		f.inputs "Payment Info" do
+			f.input :amount
+			f.input :payment_type
+			f.input :check_number
+		end
+		f.actions
+	end
 
 end
