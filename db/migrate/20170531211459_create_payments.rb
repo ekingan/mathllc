@@ -5,7 +5,6 @@ class CreatePayments < ActiveRecord::Migration[5.1]
       t.integer :payment_type
       t.integer :check_number
       t.references :job, foreign_key: true
-      t.references :client, foreign_key: true
 
       t.timestamps
     end
