@@ -27,6 +27,10 @@ ActiveAdmin.register Job do
     actions
   end
 
+  action_item only: [:show] do
+    link_to "Receive Payment", admin_payment_path(job)
+  end
+
   form do |f|
     f.semantic_errors *f.object.errors.keys
     f.inputs "Preparer and Client Info" do

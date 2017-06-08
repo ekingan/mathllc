@@ -105,10 +105,8 @@ ActiveRecord::Schema.define(version: 20170531211817) do
     t.integer "payment_type"
     t.integer "check_number"
     t.bigint "job_id"
-    t.bigint "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_payments_on_client_id"
     t.index ["job_id"], name: "index_payments_on_job_id"
   end
 

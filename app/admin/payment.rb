@@ -4,7 +4,7 @@ ActiveAdmin.register Payment do
 	form do |f|
     f.semantic_errors *f.object.errors.keys
 		f.inputs "Job" do
-			f.input :job_id
+			f.input :job_id, as: :select, collection: Job.all
 		end
 		f.inputs "Payment Info" do
 			f.input :amount
