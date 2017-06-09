@@ -130,6 +130,5 @@ ActiveRecord::Schema.define(version: 20170531211817) do
 
   add_foreign_key "jobs", "clients"
   add_foreign_key "jobs", "preparers"
-  add_foreign_key "payments", "clients"
   add_foreign_key "payments", "jobs"
 end

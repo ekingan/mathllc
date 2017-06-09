@@ -1,5 +1,5 @@
 class Preparer < ApplicationRecord
-  has_many :clients
+  has_many :clients, through: :jobs
   has_many :payments, through: :jobs
   has_many :jobs
   enum role: [:admin, :preparer]

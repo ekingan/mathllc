@@ -5,7 +5,7 @@ ActiveAdmin.register Preparer do
 
   filter :first_name
   filter :last_name
-  
+
   index do
     column :id
     column :first_name
