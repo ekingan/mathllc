@@ -6,18 +6,18 @@ ActiveAdmin.register Client do
     menu priority: 2
 
   filter :preparer, collection: Preparer.all.map(&:first_name)
+  filter :entity_type, as: :select
   filter :first_name
   filter :last_name
+  filter :spouse_first_name
+  filter :spouse_last_name
   filter :email
   filter :phone
   filter :city
   filter :state
   filter :occupation
-  filter :entity_type, as: :select
   filter :tax_year_ends
   filter :filing_status, as: :select
-  filter :spouse_first_name
-  filter :spouse_last_name
 
   action_item only: [:show] do
     link_to "New Job", admin_job_path(client)
@@ -36,8 +36,11 @@ end
 
 show do
   attributes_table do
+    row :entity_type
     row :first_name
     row :last_name
+    row :company
+    row :filing_status
     row :date_of_birth, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
     row :email
     row :phone
@@ -45,19 +48,14 @@ show do
     row :state
     row :zip_code
     row :occupation
-    row :entity_type, as: :select
-    row :tax_year_ends, as: :datepicker, datepicker_options: { dateFormat: "mm/dd" }
-    row :filing_status, as: :select
     row :number_of_dependents
-
+    row :tax_year_ends, as: :datepicker, datepicker_options: { dateFormat: "mm/dd" }
     row :spouse_first_name
     row :spouse_last_name
     row :spouse_date_of_birth, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
     row :spouse_phone
     row :spouse_email
     row :spouse_occupation
-
-
     row :notes
   end
 end
@@ -66,6 +64,7 @@ end
     f.inputs "Taxpayer Info" do
       f.input :first_name
       f.input :last_name
+      f.input :company
       f.input :date_of_birth, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
       f.input :email
       f.input :phone

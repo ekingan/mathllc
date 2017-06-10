@@ -7,10 +7,21 @@ ActiveAdmin.register Job do
 
   menu priority: 3
 
+  filter :preparer_first_name, as: :select, collection: Preparer.all.map{|prep| prep.first_name}
+  filter :client_last_name, as: :select, collection: Client.all.map{|c| c.last_name}
+  filter :client_id, as: :select, label: "Client ID"
+  filter :status, as: :select
+  filter :fed_form
+  filter :ack_fed
+  filter :ack_primary_state
+  filter :due_date
+  filter :rejected, as: :select
+
   index do
     column :id
     column "Client" do |job|
-      Client.find(job.client_id).last_name
+      c = Client.find(job.client_id)
+      link_to [c.last_name, c.first_name].join(', '), admin_client_path(job.client_id)
     end
     column "Preparer" do |job|
       Preparer.find(job.preparer_id).first_name
@@ -27,15 +38,26 @@ ActiveAdmin.register Job do
     actions
   end
 
-  action_item only: [:show] do
-    link_to "Receive Payment", admin_payment_path(job)
+  action_item only: [:show] do |job|
+    link_to "Receive Payment", new_admin_payment_path(job)
   end
+
+  show do
+    attributes_table do
+      row :preparer
+      row :client
+      row :fed_form
+    end
+  end
+
 
   form do |f|
     f.semantic_errors *f.object.errors.keys
-    f.inputs "Preparer and Client Info" do
-      f.input :preparer_id
-      f.input :client_id
+    f.inputs "Preparer" do
+      f.input :preparer, as: :select, collection: Preparer.all.map {|prep| [prep.first_name, prep.id]}
+    end
+    f.inputs "Client" do
+      f.input :client, as: :select, collection: Client.all.map {|c| [ "#{c.last_name}, #{c.first_name}", c.id]}
     end
     f.inputs "Job Info" do
       f.input :fed_form
@@ -58,7 +80,9 @@ ActiveAdmin.register Job do
       f.input :ack_third_state, as: :datepicker, datepicker_options: { dateFormat: "mm/dd/yy" }
       f.input :rejected
     end
+    f.inputs "Preparer Notes" do
       f.input :notes
+    end
       f.actions
   end
 

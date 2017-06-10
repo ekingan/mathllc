@@ -13,6 +13,7 @@ ActiveAdmin.register Preparer do
     column :email
     column :phone
     column :job_title
+    actions
   end
 
   form do |f|
