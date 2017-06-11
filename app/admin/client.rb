@@ -20,7 +20,7 @@ ActiveAdmin.register Client do
   filter :filing_status, as: :select
 
   action_item only: [:show] do
-    link_to "New Job", admin_job_path(client)
+    link_to "New Job", new_admin_job_path
   end
 
 index do

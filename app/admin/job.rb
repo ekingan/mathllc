@@ -3,7 +3,7 @@ ActiveAdmin.register Job do
               :printed, :scanned, :uploaded, :filed, :ack_fed, :ack_primary_state,
               :ack_second_state, :ack_third_state, :due_date, :rejected,
               :notes, :preparer, :client, :client_id, :preparer_id, :payment_id, preparer_attributes: [:first_name, :id],
-              client_attributes: [:last_name, :id]
+              client_attributes: [:last_name, :id], payment_attributes: [:amount, :check_number, :payment_type]
 
   menu priority: 3
 
@@ -24,7 +24,7 @@ ActiveAdmin.register Job do
       link_to [c.last_name, c.first_name].join(', '), admin_client_path(job.client_id)
     end
     column "Preparer" do |job|
-      Preparer.find(job.preparer_id).first_name
+      link_to Preparer.find(job.preparer_id).first_name, admin_preparer_path(job.preparer_id)
     end
     column :fed_form
     column :status
@@ -44,9 +44,31 @@ ActiveAdmin.register Job do
 
   show do
     attributes_table do
-      row :preparer
-      row :client
+      row "Preparer" do
+        "#{job.preparer.first_name}  #{job.preparer.last_name}"
+      end
+      row "Client" do
+        "#{job.client.first_name}  #{job.client.last_name}"
+      end
+      row :status
       row :fed_form
+      row :primary_state
+      row :tmse
+      row :portland
+      row :due_date
+      row :printed
+      row :scanned
+      row :uploaded
+      row :filed
+      row :ack_fed
+      row :ack_primary_state
+      row :ack_second_state
+      row :ack_third_state
+      row :rejected
+      row "Payment" do
+        number_to_currency(job.payment.amount) if job.payment
+      end
+      row :notes
     end
   end
 
