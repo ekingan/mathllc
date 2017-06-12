@@ -1,0 +1,21 @@
+<h5>Money Info</h5>
+<table>
+	<thead>
+		<tr>
+			<th>Client</th>
+			<th>Job</th>
+			<th>Amount</th>
+			<th>Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @preparer.jobs.each do |job| %>
+		<tr>
+			<th><%= job.client.last_name %></th>
+			<th><%= job.id %></th>
+			<th><%= number_to_currency(job.payment.amount) if job.payment %></th>
+			<th><%= job.payment.created_at if job.payment%></th>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

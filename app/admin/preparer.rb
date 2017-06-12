@@ -16,6 +16,15 @@ ActiveAdmin.register Preparer do
     actions
   end
 
+  show do
+    attributes_table do
+      row :first_name
+      row :last_name
+      row :email
+      render 'preparer/money', { preparer: preparer }
+    end
+  end
+
   form do |f|
     f.inputs "Preparer Info" do
       f.input :first_name
