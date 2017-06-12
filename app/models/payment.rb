@@ -3,6 +3,18 @@ class Payment < ApplicationRecord
   enum payment_type: [:check, :cash, :square, :paypal, :stripe, :trade, :other]
   validates_presence_of :amount
 
+  def preparer_id
+  end
+
+  def preparer_id=(arg)
+  end
+
+  def client_id
+  end
+
+  def client_id=(arg)
+  end
+
   def new
     @payment = Payment.new
     @job = params[job_id]
@@ -11,6 +23,10 @@ class Payment < ApplicationRecord
   def create
     @job = Job.find(params[:job_id])
     @payment = @job.payment.create(payment_params)
+  end
+
+  def show
+    @payment = Payment.find(params[:id])
   end
 
   private
