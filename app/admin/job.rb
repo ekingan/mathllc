@@ -27,7 +27,9 @@ ActiveAdmin.register Job do
       link_to Preparer.find(job.preparer_id).first_name, admin_preparer_path(job.preparer_id)
     end
     column :fed_form
-    column :status
+    column :status, sortable: :status do |job|
+      status_tag job.status
+    end
     column :printed
     column :scanned
     column :uploaded
@@ -50,7 +52,9 @@ ActiveAdmin.register Job do
       row "Client" do
         "#{job.client.first_name}  #{job.client.last_name}"
       end
-      row :status
+      row :status do |job|
+        status_tag job.status
+      end
       row :fed_form
       row :primary_state
       row :tmse

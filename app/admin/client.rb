@@ -56,7 +56,7 @@ show do
     row :spouse_phone
     row :spouse_email
     row :spouse_occupation
-    render 'client/payments', { client: client }
+    render 'clients/payments', { client: client }
     row :notes
   end
 end
