@@ -21,7 +21,7 @@ ActiveAdmin.register Preparer do
       row :first_name
       row :last_name
       row :email
-      render 'preparer/money', { preparer: preparer }
+      render partial: 'preparers/money', locals: { preparer: preparer, total_payments: @total_payments }
     end
   end
 
@@ -43,5 +43,13 @@ ActiveAdmin.register Preparer do
       f.input :job_title
     end
     f.actions
+  end
+
+  controller do
+    def show
+      @preparer = Preparer.find(params[:id])
+      @total_payments = @preparer.jobs.map(&:payment).compact.map{|pay| pay.amount.to_i}.sum
+    end
+
   end
 end
