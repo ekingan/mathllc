@@ -1,6 +1,8 @@
 ActiveAdmin.register Payment do
+	belongs_to :job, optional: true
 	permit_params :client_attributes, :job_attributes, :preparer_attributes, :job_id, :amount, :payment_type, :check_number
 
+	filter :preparer
 	filter :job_id, as: :select
 	filter :amount
 	filter :created_at

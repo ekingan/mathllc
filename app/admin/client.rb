@@ -1,9 +1,9 @@
 ActiveAdmin.register Client do
-    permit_params :first_name, :last_name, :company, :date_of_birth, :email, :phone, :street, :city,
+  permit_params :first_name, :last_name, :company, :date_of_birth, :email, :phone, :street, :city,
                 :state, :zip_code, :occupation, :entity_type, :tax_year_ends, :filing_status,
                 :number_of_dependents, :spouse_first_name, :spouse_last_name, :spouse_date_of_birth,
                 :spouse_phone, :spouse_email, :spouse_occupation, :notes, :preparer_attributes
-    menu priority: 2
+  menu priority: 2
 
   filter :preparer, collection: Preparer.all.map(&:first_name)
   filter :entity_type, as: :select
